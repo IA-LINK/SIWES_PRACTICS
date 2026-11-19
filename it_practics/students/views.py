@@ -1,13 +1,9 @@
 
 from django.http import HttpResponse
-
+from django.shortcuts import render
 
 def home(request):
     """
     Display the SIWES Management System homepage.
     """
-    return HttpResponse(
-        "<h1>Welcome to SIWES Management System</h1>"
-        "<h2>JAMES AYIKA IKWOGYA 21/64858D/1</h2>"
-        "<p>Django application is working successfully.</p>"
-    )
+    return render(request, 'students/home.html')
