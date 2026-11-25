@@ -8,4 +8,8 @@ urlpatterns = [
     # Read students
     path('students/', views.student_list, name='student_list'),
 
+    # update
+    path(
+    'students/edit/<int:id>/', views.student_update, name='student_update'),
+
 ]
