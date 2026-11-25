@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+</head>
+<body>
+
+    <h2>SIWES Student Registration</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Register Student</button>
+    </form>
+
+    <a href="{% url 'student_list' %}">
+        View Students
+    </a>
+
+</body>
+</html>

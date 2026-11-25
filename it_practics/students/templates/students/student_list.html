@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Records</title>
+</head>
+<body>
+
+    <h2>Registered SIWES Students</h2>
+
+    <a href="{% url 'student_create' %}">
+        Register New Student
+    </a>
+
+    {% for student in students %}
+        <p>
+            {{ student.first_name }}
+            {{ student.last_name }} |
+            {{ student.matric_number }} |
+            {{ student.department }}
+        </p>
+    {% empty %}
+        <p>No students registered yet.</p>
+    {% endfor %}
+
+</body>
+</html>
