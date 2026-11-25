@@ -60,11 +60,15 @@ def student_delete(request, id):
     })
 
 
+
 def dashboard(request):
     total_students = Student.objects.count()
 
     context = {
         'total_students': total_students,
+        'total_supervisors': 0,
+        'total_reports': 0,
+        'total_departments': 0,
     }
 
     return render(request, 'students/dashboard.html', context)
