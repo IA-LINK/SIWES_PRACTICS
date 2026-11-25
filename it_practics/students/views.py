@@ -49,10 +49,22 @@ def student_update(request, id):
 
 # DELETE STUDENT
 def student_delete(request, id):
-    student = get_object_or_404(student, id=id)
+    student = get_object_or_404(Student, id=id)
 
     if request.method == 'POST':
         student.delete()
         return redirect('student_list')
 
-    return render(request, 'students/student_confirm')
+    return render(request, 'students/student_confirm_delete.html', {
+        'student': student
+    })
+
+
+def dashboard(request):
+    total_students = Student.objects.count()
+
+    context = {
+        'total_students': total_students,
+    }
+
+    return render(request, 'students/dashboard.html', context)

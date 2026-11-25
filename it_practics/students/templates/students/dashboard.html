@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIWES Management Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .sidebar {
+            width: 230px;
+            height: 100vh;
+            background: #123b2a;
+            color: white;
+            position: fixed;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 22px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 14px 5px;
+        }
+
+        .sidebar a:hover {
+            background: #245c43;
+        }
+
+        .main {
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            width: 220px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .number {
+            font-size: 35px;
+            color: #123b2a;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>SIWES PORTAL</h2>
+
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'student_list' %}">Students</a>
+    <a href="{% url 'student_create' %}">Register Student</a>
+</div>
+
+<div class="main">
+
+    <h1>Dashboard</h1>
+    <p>Welcome to the SIWES Management System</p>
+
+    <div class="card">
+        <h3>Total Students</h3>
+        <div class="number">{{ total_students }}</div>
+    </div>
+
+</div>
+
+</body>
+</html>

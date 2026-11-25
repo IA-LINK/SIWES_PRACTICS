@@ -10,9 +10,14 @@
 
     <a href="{% url 'student_create' %}">
         Register New Student
+        
     </a>
 
     {% for student in students %}
+     <a href="{% url 'student_update' student.pk %}">Edit</a>
+    
+    <a href="{% url 'student_delete' student.pk %}">Delete</a>
+    
         <p>
             {{ student.first_name }}
             {{ student.last_name }} |
@@ -22,6 +27,7 @@
     {% empty %}
         <p>No students registered yet.</p>
     {% endfor %}
+
 
 </body>
 </html>
