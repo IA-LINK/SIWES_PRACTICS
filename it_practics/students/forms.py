@@ -2,6 +2,9 @@
 from django import forms
 from .models import Student
 
+from .models import Supervisor
+
+
 
 class StudentForm(forms.ModelForm):
     """
@@ -50,3 +53,14 @@ class StudentForm(forms.ModelForm):
                 attrs={'class': 'form-control'}
             ),
         }
+
+class SupervisorForm(forms.ModelForm):
+    class Meta:
+        model = Supervisor
+        fields = [
+            'full_name',
+            'email',
+            'phone',
+            'department',
+            'designation',
+        ]

@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supervisor List</title>
+</head>
+<body>
+
+<h2>Registered Supervisors</h2>
+
+<a href="{% url 'supervisor_create' %}">Add New Supervisor</a>
+
+<table border="1" cellpadding="12" cellspacing="0">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Department</th>
+        <th>Designation</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for supervisor in supervisors %}
+    <tr>
+        <td>{{ supervisor.full_name }}</td>
+        <td>{{ supervisor.email }}</td>
+        <td>{{ supervisor.phone }}</td>
+        <td>{{ supervisor.department }}</td>
+        <td>{{ supervisor.designation }}</td>
+        <td>
+            <a href="{% url 'supervisor_update' supervisor.id %}">Edit</a>
+
+            <a href="{% url 'supervisor_delete' supervisor.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="6">No supervisors registered yet.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

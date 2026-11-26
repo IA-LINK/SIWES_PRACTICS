@@ -14,4 +14,11 @@ urlpatterns = [
     path('delete/<int:id>/', views.student_delete, name='student_delete'),
 
     path('dashboard/', views.dashboard, name='dashboard'),
+
+    # SUPERVISORS
+    path('supervisors/', views.supervisor_list, name='supervisor_list'),
+    path('supervisors/add/', views.supervisor_create, name='supervisor_create'),
+    path('supervisors/edit/<int:id>/', views.supervisor_update, name='supervisor_update'),
+    path('supervisors/delete/<int:id>/', views.supervisor_delete, name='supervisor_delete'),
+
 ]

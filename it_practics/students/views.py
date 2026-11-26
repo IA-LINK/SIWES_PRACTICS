@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Student
 from .forms import StudentForm
+from .forms import SupervisorForm
 
 
 # CREATE STUDENT
@@ -72,3 +73,55 @@ def dashboard(request):
     }
 
     return render(request, 'students/dashboard.html', context)
+
+
+def supervisor_list(request):
+    supervisors = Supervisor.objects.all()
+
+    return render(request, 'students/supervisor_list.html', {
+        'supervisors': supervisors
+    })
+
+
+def supervisor_create(request):
+    if request.method == 'POST':
+        form = SupervisorForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('supervisor_list')
+    else:
+        form = SupervisorForm()
+
+    return render(request, 'students/supervisor_form.html', {
+        'form': form
+    })
+
+
+def supervisor_update(request, id):
+    supervisor = get_object_or_404(Supervisor, id=id)
+
+    if request.method == 'POST':
+        form = SupervisorForm(request.POST, instance=supervisor)
+
+        if form.is_valid():
+            form.save()
+            return redirect('supervisor_list')
+    else:
+        form = SupervisorForm(instance=supervisor)
+
+    return render(request, 'students/supervisor_form.html', {
+        'form': form
+    })
+
+
+def supervisor_delete(request, id):
+    supervisor = get_object_or_404(Supervisor, id=id)
+
+    if request.method == 'POST':
+        supervisor.delete()
+        return redirect('supervisor_list')
+
+    return render(request, 'students/supervisor_confirm_delete.html', {
+        'supervisor': supervisor
+    })

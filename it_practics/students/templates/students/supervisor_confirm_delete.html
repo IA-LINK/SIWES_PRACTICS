@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Supervisor</title>
+</head>
+<body>
+
+<h2>Delete Supervisor</h2>
+
+<p>Are you sure you want to delete {{ supervisor.full_name }}?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+</form>
+
+<a href="{% url 'supervisor_list' %}">Cancel</a>
+
+</body>
+</html>
