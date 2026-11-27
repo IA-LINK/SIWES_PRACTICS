@@ -21,4 +21,7 @@ urlpatterns = [
     path('supervisors/edit/<int:id>/', views.supervisor_update, name='supervisor_update'),
     path('supervisors/delete/<int:id>/', views.supervisor_delete, name='supervisor_delete'),
 
+    # Logbook
+    path('logbook/', views.logbook_list, name='logbook_list'),
+    path('logbook/add/', views.logbook_create, name='logbook_create'),
 ]

@@ -42,3 +42,42 @@ class Supervisor(models.Model):
 
     def __str__(self):
         return self.full_name
+
+
+class Logbook(models.Model):
+
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Rejected', 'Rejected'),
+    ]
+
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE
+    )
+
+    supervisor = models.ForeignKey(
+        Supervisor,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True
+    )
+
+    date = models.DateField()
+    activities = models.TextField()
+    skills_learned = models.TextField(blank=True)
+    challenges = models.TextField(blank=True)
+
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='Pending'
+    )
+
+    supervisor_comment = models.TextField(blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.student} - {self.date}"

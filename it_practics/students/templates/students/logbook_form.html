@@ -1,0 +1,13 @@
+{% extends 'students/base.html' %}
+
+{% block content %}
+<h2>Add SIWES Logbook Entry</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Submit Logbook</button>
+</form>
+{% endblock %}
+

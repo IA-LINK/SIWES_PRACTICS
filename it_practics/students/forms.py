@@ -1,10 +1,8 @@
 
 from django import forms
 from .models import Student
-
 from .models import Supervisor
-
-
+from .models import Logbook
 
 class StudentForm(forms.ModelForm):
     """
@@ -64,3 +62,34 @@ class SupervisorForm(forms.ModelForm):
             'department',
             'designation',
         ]
+
+class LogbookForm(forms.ModelForm):
+    class Meta:
+        model = Logbook
+        fields = [
+            'student',
+            'supervisor',
+            'date',
+            'activities',
+            'skills_learned',
+            'challenges',
+        ]
+
+        widgets = {
+            'date': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'
+            }),
+            'activities': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 4
+            }),
+            'skills_learned': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3
+            }),
+            'challenges': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3
+            }),
+        }

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Student
-from .forms import StudentForm
-from .forms import SupervisorForm
+from .models import Student, Supervisor, Logbook
+from .forms import StudentForm, SupervisorForm, LogbookForm
 
 
 # CREATE STUDENT
@@ -124,4 +123,27 @@ def supervisor_delete(request, id):
 
     return render(request, 'students/supervisor_confirm_delete.html', {
         'supervisor': supervisor
+    })
+
+
+def logbook_create(request):
+    if request.method == 'POST':
+        form = LogbookForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('logbook_list')
+    else:
+        form = LogbookForm()
+
+    return render(request, 'students/logbook_form.html', {
+        'form': form
+    })
+
+
+def logbook_list(request):
+    logbooks = Logbook.objects.all().order_by('-date')
+
+    return render(request, 'students/logbook_list.html', {
+        'logbooks': logbooks
     })
