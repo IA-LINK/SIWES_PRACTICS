@@ -1,0 +1,105 @@
+
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Attendance Reports</h2>
+
+    <form method="GET" class="card p-3 mb-4">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Start Date</label>
+                <input type="date" name="start_date"
+                       value="{{ start_date }}"
+                       class="form-control">
+            </div>
+
+            <div class="col-md-3">
+                <label>End Date</label>
+                <input type="date" name="end_date"
+                       value="{{ end_date }}"
+                       class="form-control">
+            </div>
+
+            <div class="col-md-3">
+                <label>Status</label>
+                <select name="status" class="form-control">
+                    <option value="">All Status</option>
+                    <option value="Present"
+                    {% if selected_status == 'Present' %}selected{% endif %}>
+                        Present
+                    </option>
+                    <option value="Absent"
+                    {% if selected_status == 'Absent' %}selected{% endif %}>
+                        Absent
+                    </option>
+                    <option value="Late"
+                    {% if selected_status == 'Late' %}selected{% endif %}>
+                        Late
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label>Search Student</label>
+                <input type="text" name="search"
+                       value="{{ search }}"
+                       placeholder="Name or matric number"
+                       class="form-control">
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">
+            Filter Reports
+        </button>
+
+        <a href="{% url 'attendance_report' %}"
+           class="btn btn-secondary mt-3">
+            Reset
+        </a>
+
+    </form>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Matric Number</th>
+                <th>Date</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.student }}</td>
+                <td>{{ attendance.student.matric_number }}</td>
+                <td>{{ attendance.date }}</td>
+                <td>{{ attendance.time_in|default:"-" }}</td>
+                <td>{{ attendance.time_out|default:"-" }}</td>
+                <td>{{ attendance.status }}</td>
+            </tr>
+
+            {% empty %}
+            <tr>
+                <td colspan="6">No attendance records found.</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

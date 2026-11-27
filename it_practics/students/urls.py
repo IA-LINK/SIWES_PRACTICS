@@ -31,4 +31,7 @@ urlpatterns = [
     path('attendance/add/', views.attendance_create, name='attendance_create'),
     path('attendance/edit/<int:id>/', views.attendance_update, name='attendance_update'),
     path('attendance/delete/<int:id>/', views.attendance_delete, name='attendance_delete'),
+    path('attendance/dashboard/', views.attendance_dashboard, name='attendance_dashboard'),
+    path( 'attendance/reports/', views.attendance_report, name='attendance_report'),
+    path('attendance/export/pdf/', views.export_attendance_pdf, name='export_attendance_pdf'),
 ]

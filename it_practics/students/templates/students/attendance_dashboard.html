@@ -1,0 +1,79 @@
+
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Attendance Dashboard</h2>
+    <p>Overview of student attendance records.</p>
+
+    <div class="row mt-4">
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-primary text-white p-3">
+                <h5>Total Records</h5>
+                <h2>{{ total_attendance }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-success text-white p-3">
+                <h5>Present</h5>
+                <h2>{{ present_count }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-danger text-white p-3">
+                <h5>Absent</h5>
+                <h2>{{ absent_count }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-warning text-dark p-3">
+                <h5>Late</h5>
+                <h2>{{ late_count }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <h4 class="mt-4">Recent Attendance</h4>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Date</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for attendance in recent_attendance %}
+            <tr>
+                <td>{{ attendance.student }}</td>
+                <td>{{ attendance.date }}</td>
+                <td>{{ attendance.time_in|default:"-" }}</td>
+                <td>{{ attendance.time_out|default:"-" }}</td>
+                <td>{{ attendance.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No attendance records yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'attendance_list' %}" class="btn btn-primary">
+        View All Attendance
+    </a>
+
+</div>
+
+{% endblock %}
