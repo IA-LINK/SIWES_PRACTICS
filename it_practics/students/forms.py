@@ -1,8 +1,8 @@
 
 from django import forms
-from .models import Student
-from .models import Supervisor
-from .models import Logbook
+from .models import Student, Supervisor, Logbook, Attendance
+
+
 
 class StudentForm(forms.ModelForm):
     """
@@ -89,6 +89,45 @@ class LogbookForm(forms.ModelForm):
                 'rows': 3
             }),
             'challenges': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 3
+            }),
+        }
+
+
+
+class AttendanceForm(forms.ModelForm):
+
+    class Meta:
+        model = Attendance
+        fields = [
+            'student',
+            'time_in',
+            'time_out',
+            'status',
+            'remarks',
+        ]
+
+        widgets = {
+            'student': forms.Select(attrs={
+                'class': 'form-control'
+            }),
+
+            'time_in': forms.TimeInput(attrs={
+                'class': 'form-control',
+                'type': 'time'
+            }),
+
+            'time_out': forms.TimeInput(attrs={
+                'class': 'form-control',
+                'type': 'time'
+            }),
+
+            'status': forms.Select(attrs={
+                'class': 'form-control'
+            }),
+
+            'remarks': forms.Textarea(attrs={
                 'class': 'form-control',
                 'rows': 3
             }),

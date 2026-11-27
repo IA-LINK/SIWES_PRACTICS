@@ -25,4 +25,10 @@ urlpatterns = [
     path('logbook/', views.logbook_list, name='logbook_list'),
     path('logbook/add/', views.logbook_create, name='logbook_create'),
     path('logbook/review/<int:id>/', views.logbook_review, name='logbook_review'),
+
+    #Attendance
+    path('attendance/', views.attendance_list, name='attendance_list'),
+    path('attendance/add/', views.attendance_create, name='attendance_create'),
+    path('attendance/edit/<int:id>/', views.attendance_update, name='attendance_update'),
+    path('attendance/delete/<int:id>/', views.attendance_delete, name='attendance_delete'),
 ]
