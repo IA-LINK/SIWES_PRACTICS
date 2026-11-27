@@ -147,3 +147,41 @@ def logbook_list(request):
     return render(request, 'students/logbook_list.html', {
         'logbooks': logbooks
     })
+
+
+def logbook_review(request, id):
+    logbook = get_object_or_404(Logbook, id=id)
+
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        comment = request.POST.get('supervisor_comment', '')
+
+        if status in ['Approved', 'Rejected']:
+            logbook.status = status
+            logbook.supervisor_comment = comment
+            logbook.save()
+
+            return redirect('logbook_list')
+
+    return render(request, 'students/logbook_review.html', {
+        'logbook': logbook
+    })
+
+
+def logbook_review(request, id):
+    logbook = get_object_or_404(Logbook, id=id)
+
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        comment = request.POST.get('supervisor_comment', '')
+
+        if status in ['Approved', 'Rejected']:
+            logbook.status = status
+            logbook.supervisor_comment = comment
+            logbook.save()
+
+            return redirect('logbook_list')
+
+    return render(request, 'students/logbook_review.html', {
+        'logbook': logbook
+    })

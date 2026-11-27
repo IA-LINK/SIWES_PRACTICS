@@ -1,0 +1,37 @@
+
+{% extends 'students/base.html' %}
+
+{% block content %}
+
+<div class="card shadow p-4">
+    <h2>Review SIWES Logbook</h2>
+
+    <hr>
+
+    <p><strong>Student:</strong> {{ logbook.student }}</p>
+    <p><strong>Date:</strong> {{ logbook.date }}</p>
+    <p><strong>Activities:</strong> {{ logbook.activities }}</p>
+    <p><strong>Skills Learned:</strong> {{ logbook.skills_learned }}</p>
+    <p><strong>Challenges:</strong> {{ logbook.challenges }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label class="form-label">Supervisor Comment</label>
+        <textarea name="supervisor_comment"
+                  class="form-control mb-3"
+                  rows="4">{{ logbook.supervisor_comment }}</textarea>
+
+        <button type="submit" name="status"
+                value="Approved" class="btn btn-success">
+            Approve
+        </button>
+
+        <button type="submit" name="status"
+                value="Rejected" class="btn btn-danger">
+            Reject
+        </button>
+    </form>
+</div>
+
+{% endblock %}

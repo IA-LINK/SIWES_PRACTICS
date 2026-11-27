@@ -11,6 +11,7 @@
         <th>Date</th>
         <th>Activities</th>
         <th>Status</th>
+        <th>Action</th>
     </tr>
 
     {% for logbook in logbooks %}
@@ -20,6 +21,12 @@
         <td>{{ logbook.activities }}</td>
         <td>{{ logbook.status }}</td>
     </tr>
+    <td>
+        <a href="{% url 'logbook_review' logbook.id %}" class="btn btn-primary btn-sm">
+            Review
+        </a>
+    </td>
+    
     {% empty %}
     <tr>
         <td colspan="4">No logbook entries yet.</td>

@@ -24,4 +24,5 @@ urlpatterns = [
     # Logbook
     path('logbook/', views.logbook_list, name='logbook_list'),
     path('logbook/add/', views.logbook_create, name='logbook_create'),
+    path('logbook/review/<int:id>/', views.logbook_review, name='logbook_review'),
 ]
