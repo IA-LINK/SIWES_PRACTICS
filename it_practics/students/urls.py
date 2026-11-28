@@ -34,4 +34,5 @@ urlpatterns = [
     path('attendance/dashboard/', views.attendance_dashboard, name='attendance_dashboard'),
     path( 'attendance/reports/', views.attendance_report, name='attendance_report'),
     path('attendance/export/pdf/', views.export_attendance_pdf, name='export_attendance_pdf'),
+    path('attendance/report/pdf/', views.export_attendance_pdf, name='attendance_report_pdf'),
 ]
